@@ -14,6 +14,15 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
+    private final String[] allowedEndpoints = {
+            "/",
+            "/css/**",
+            "/image/**",
+            "/js/**",
+            "/h2-console/**",
+            "/profile"
+    };
+
     private final CustomOAuth2UserService customOAuth2UserService;
 
     @Bean
@@ -24,7 +33,7 @@ public class SecurityConfig {
             .and()
             .authorizeHttpRequests(request -> request
                 .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-                .requestMatchers("/", "/css/**", "/image/**", "/js/**", "/h2-console/**").permitAll()
+                .requestMatchers(allowedEndpoints).permitAll()
                 .requestMatchers("/api/v1/**").hasRole(Role.USER.name())
                 .anyRequest().authenticated())
             .logout()
