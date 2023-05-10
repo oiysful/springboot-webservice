@@ -58,9 +58,9 @@ jobs: # 병렬로 실행되는 작업 단위, 여러 step으로 이루어짐
       shell: bash
       
     # 프로젝트 압축
-    - name: Make zip file
-      run: zip -r ./$PROJECT_NAME.zip .
-      shell: bash
+#    - name: Make zip file
+#      run: zip -r ./$PROJECT_NAME.zip .
+#      shell: bash
     
     # AWS 권한 확인
     - name: Configure AWS credentials
@@ -72,7 +72,7 @@ jobs: # 병렬로 실행되는 작업 단위, 여러 step으로 이루어짐
     
     # 압축한 프로젝트를 S3로 전송
     - name: Upload to S3
-      run: aws s3 cp --region ap-northeast-2 ./$PROJECT_NAME.zip s3://$S3_BUCKET_NAME/$PROJECT_NAME.zip
+      run: aws s3 cp --region ap-northeast-2 ./deploy/$PROJECT_NAME.zip s3://$S3_BUCKET_NAME/$PROJECT_NAME.zip
       
     # 배포 그룹으로 애플리케이션 전송
     - name: Code Deploy
