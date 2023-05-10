@@ -32,12 +32,7 @@ chmod +x $JAR_NAME
 
 ehco "  >> $JAR_NAME Execute"
 
-APP_PATH=/home/ec2-user/app
-
 nohup java -jar \
-    -Dspring.config.location=classpath:/application.properties, \
-                             classpath:/application-real.properties, \
-                             $APP_PATH/application-oauth.properties, \
-                             $APP_PATH/application-real-db.properties \
+    -Dspring.config.location=classpath:/application.properties,classpath:/application-real.properties,/home/ec2-user/app/application-oauth.properties,/home/ec2-user/app/application-real-db.properties \
     -Dspring.profiles.active=real \
     $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
