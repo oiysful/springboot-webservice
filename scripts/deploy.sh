@@ -9,7 +9,7 @@ cp $REPOSITORY/zip/*.jar $REPOSITORY/
 
 echo "  >> Current Running Application Check"
 
-CURRENT_PID=$(pgrep -fl ian-srpingboot-webservice | grep jar | awk '{print $1}')
+CURRENT_PID=$(pgrep -fl $PROJECT_NAME | grep jar | awk '{print $1}')
 
 if [ -z "$CURRENT_PID" ]; then
     echo "    - NOT EXIST"
