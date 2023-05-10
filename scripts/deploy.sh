@@ -30,7 +30,7 @@ echo "  >> Add Execute Permission to $JAR_NAME"
 
 chmod +x $JAR_NAME
 
-ehco "  >> $JAR_NAME Execute"
+echo "  >> $JAR_NAME Execute"
 
 nohup java -jar \
     -Dspring.config.location=classpath:/application.properties,classpath:/application-real.properties,/home/ec2-user/app/application-oauth.properties,/home/ec2-user/app/application-real-db.properties \
