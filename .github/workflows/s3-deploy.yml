@@ -13,6 +13,10 @@ on: # Workflow를 자동으로 트리거하기 위한 이벤트
   push:
     branches: [master] # master 브랜치에서 동작
 
+env: # 스크립트 변수 선언
+  S3_BUCKET_NAME: ian-webservice-bucket
+  PROJECT_NAME: springboot-webservice
+  
 jobs: # 병렬로 실행되는 작업 단위, 여러 step으로 이루어짐
   build:
 
