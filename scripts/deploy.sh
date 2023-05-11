@@ -11,7 +11,7 @@ echo "  >> Current Running Application Check"
 
 CURRENT_PID=$(pgrep -fl $PROJECT_NAME | grep jar | awk '{print $1}')
 
-if [ -z "$CURRENT_PID" ]; then
+if [ -z "$CURRENT_PID" ] then
     echo "    - NOT EXIST"
 else
     echo "    - Application pid: $CURRENT_PID"
