@@ -4,8 +4,6 @@ import com.ian.springboot.domain.posts.Posts;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @Getter
 @NoArgsConstructor
 public class PostsListResponseDto {
@@ -13,7 +11,7 @@ public class PostsListResponseDto {
     private Long id;
     private String title;
     private String author;
-    private LocalDateTime modifiedDate;
+    private String modifiedDate;
 
     public PostsListResponseDto(Posts entity) {
         this.id = entity.getId();

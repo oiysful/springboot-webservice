@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -46,13 +47,18 @@ public class PostsRepositoryTest {
     }
 
     @Test
-    public void BaseTimeEntity_등록() {
+    public void BaseTimeEntity_등록() throws InterruptedException {
         //given
-        LocalDateTime now = LocalDateTime.of(2023, 5, 4, 0, 0, 0);
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println(">>>>>>>>>> LocalDateTime.now()=" + now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).toString());
+
+        Thread.sleep(2000);
+
         postsRepository.save(Posts.builder()
                 .title("title")
                 .content("content")
                 .author("author")
+                .email("email")
                 .build());
 
         //when
@@ -63,7 +69,8 @@ public class PostsRepositoryTest {
 
         System.out.println(">>>>>>>>>> createDate=" + posts.getCreatedDate() + ", modifiedDate=" + posts.getModifiedDate());
 
-        assertThat(posts.getCreatedDate()).isAfter(now);
-        assertThat(posts.getModifiedDate()).isAfter(now);
+
+        assertThat(LocalDateTime.parse(posts.getCreatedDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))).isAfter(now);
+        assertThat(LocalDateTime.parse(posts.getModifiedDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))).isAfter(now);
     }
 }

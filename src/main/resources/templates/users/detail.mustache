@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IAN Spring Boot Webservice</title>
+</head>
+<body>
+    <main>
+        <header>
+            <button id="user-detail-close-btn">X</button>
+        </header>
+        <article>
+            <img src="{{user.picture}}" alt="user-picture">
+            <span>{{user.name}}</span>
+            <span>{{user.email}}</span>
+            <span>{{user.role}}</span>
+        </article>
+        <footer>
+            <img src="/css/img/github-mark.png" alt="#">
+            <a href="https://github.com/oiysful/springboot-webservice">Github Repository</a>
+        </footer>
+    </main>
+</body>
+</html>

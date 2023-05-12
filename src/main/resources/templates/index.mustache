@@ -1,42 +1,45 @@
-{{>layout/header}}
-
-<h1> Spring Boot / AWS(EC2, S3, CodeDeploy) / Jenkins VER2</h1>
-<div class="col-md-12">
-    <div class="row">
-        <div class="col-md-6">
-            <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
-            {{#userName}}
-                Logged in as: <span id="users">{{userName}}</span>
-                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
-            {{/userName}}
-            {{^userName}}
-                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
-                <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
-            {{/userName}}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/signup.css">
+    <title>IAN Spring Boot Webservice</title>
+</head>
+<body>
+    <canvas id="particle-canvas"></canvas>
+    <section class="login-section">
+        <div class="login-box">
+            <img src="/css/img/hello.png" alt="#" class="hello-icon">
+            <form class="login-form" action="#" method="post">
+                <input type="text" name="email" id="email" class="email-input login-box-items login-input" placeholder="example@email.com">
+                <button type="submit" id="login-btn" class="user-submit-btn login-box-items login-btn">Sign in with Email</button>
+                <a href="#" class="find-pw">forgot password?</a>
+            </form>
+            <div class="instead-container">
+                <div class="or-line">OR</div>
+                <div class="sign-btn-box">
+                    <a href="/oauth2/authorization/google" id="oauth-google" class="sign-btn"></a>
+                    <a href="#" id="oauth-facebook" class="sign-btn"></a>
+                    <a href="/oauth2/authorization/naver" id="oauth-naver" class="sign-btn"></a>
+                    <button type="button" id="sign-up-btn" class="sign-btn"></button>
+                </div>
+            </div>
         </div>
-    </div>
-    <br>
-    <!-- 목록 출력 영역 -->
-    <table class="table table-horizontal table-bordered">
-        <thead class="thead-strong">
-        <tr>
-            <th>게시글번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>최종수정일</th>
-        </tr>
-        </thead>
-        <tbody id="tbody">
-        {{#posts}}
-            <tr>
-                <td>{{id}}</td>
-                <td><a href="/posts/update/{{id}}">{{title}}</a></td>
-                <td>{{author}}</td>
-                <td>{{modifiedDate}}</td>
-            </tr>
-        {{/posts}}
-        </tbody>
-    </table>
-</div>
+    </section>
+    <article class="signup-modal hidden">
+        <button type="button" id="close-modal"></button>
+        <div class="login-box">
+            <span class="signup-logo">Signup</span>
+            <form action="/auth/join" method="post" id="signup-form">
+                <input type="text" name="email" id="signup-email" class="email-input login-box-items login-input" placeholder="example@email.com">
+                <input type="password" name="pw" id="signup-pw" class="pw-input login-box-items login-input" placeholder="password">
+                <button type="submit" id="sendmail-btn" class="user-submit-btn login-box-items login-btn">Send verification code</button>
+            </form>
+        </div>
+    </article>
 
-{{>layout/footer}}
+    <script src="/js/index.js"></script>
+</body>
+</html>

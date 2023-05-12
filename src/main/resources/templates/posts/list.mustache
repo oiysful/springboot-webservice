@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IAN Spring Boot Webservice</title>
+</head>
+<body>
+    <main>
+        <header>
+            <span id="greeting">Welecome!</span>
+            <a href="/user/{{user.id}}" id="user-info">{{user.name}}</a>
+            <a href="/logout" id="logout">Logout</a>
+        </header>
+        <article>
+            <table id="post-table">
+                <thead id="post-table-head">
+                    <tr>
+                        <th>No</th>
+                        <th>Subject</th>
+                        <th>Author</th>
+                        <th>Modified At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#posts}}
+                    <tr>
+                        <td>{{id}}</td>
+                        <td><a href="/posts/{{id}}">{{title}}</a></td>
+                        <td>{{author}}</td>
+                        <td>{{modifiedDate}}</td>
+                    </tr>
+                    {{/posts}}
+                </tbody>
+                <a href="/posts/save">글 등록</a>
+            </table>
+        </article>
+        <footer>
+            <img src="/css/img/github-mark.png" alt="#">
+            <a href="https://github.com/oiysful/springboot-webservice">Github Repository</a>
+        </footer>
+    </main>
+</body>
+</html>

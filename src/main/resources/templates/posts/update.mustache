@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IAN Spring Boot Webservice</title>
+</head>
+<body>
+    <h1>게시글 수정</h1>
+
+    <div class="col-md-12">
+        <div class="col-md-4">
+            <form id="form-update">
+                <label for="title">글 번호</label>
+                <input type="text" class="form-control" id="id" name="id" value="{{post.id}}" readonly>
+                <label for="title">제목</label>
+                <input type="text" class="form-control" id="title" name="title" value="{{post.title}}">
+                <label for="author"> 작성자 </label>
+                <input type="text" class="form-control" id="author" name="author" value="{{post.author}}" readonly>
+                <label for="content"> 내용 </label>
+                <textarea class="form-control" id="content" name="content">{{post.content}}</textarea>
+            </form>
+            <a href="/" role="button" class="btn btn-secondary">취소</a>
+            <button type="button" class="btn btn-primary" id="btn-update">수정 완료</button>
+        </div>
+    </div>
+
+    <script src="/js/common/common.js"></script>
+    <script src="/js/posts/update.js"></script>
+</body>
+</html>

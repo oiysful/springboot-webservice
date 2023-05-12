@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IAN Spring Boot Webservice</title>
+</head>
+<body>
+    <h1>게시글 등록</h1>
+
+    <div class="col-md-12">
+        <div class="col-md-4">
+            <form id="form-save">
+                <label for="title">제목</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요">
+                <label for="author"> 작성자 </label>
+                <input type="text" class="form-control" id="author" name="author" value="{{userName}}" readonly>
+                <input type="hidden" class="form-control" id="email" name="email" value="{{userEmail}}">
+                <label for="content"> 내용 </label>
+                <textarea class="form-control" id="content" name="content" placeholder="내용을 입력하세요"></textarea>
+            </form>
+            <a href="/posts" role="button" class="btn btn-secondary">취소</a>
+            <button type="submit" class="btn btn-primary" id="btn-save">등록</button>
+        </div>
+    </div>
+
+    <main>
+        <header>
+            <span id="greeting">Welecome!</span>
+            <a href="/user/{{user.id}}" id="user-info">{{user.name}}</a>
+            <a href="/logout" id="logout">Logout</a>
+        </header>
+        <article>
+            <div id="post-details">
+
+            </div>
+            <a href="/" role="button" class="post-details-btn">목록</a>
+            {{#author}}
+            <a href="/posts/update/{{post.id}}" class="post-details-btn">수정</button>
+            <button type="button" class="post-details-btn" id="btn-delete">삭제</button>
+            {{/author}}
+        </article>
+        <footer>
+            <img src="/css/img/github-mark.png" alt="#">
+            <a href="https://github.com/oiysful/springboot-webservice">Github Repository</a>
+        </footer>
+    </main>
+
+    <script src="/js/common/common.js"></script>
+    <script src="/js/posts/save.js"></script>
+</body>
+</html>
