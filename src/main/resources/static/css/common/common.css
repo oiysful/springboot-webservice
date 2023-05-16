@@ -6,3 +6,66 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+.hidden {
+    display: none;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+.main-section {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* header */
+header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 40px;
+}
+#user-icon {
+    position: absolute;
+    width: 35px;
+    border-radius: 50%;
+    box-shadow: 0 0 12px grey;
+    cursor: pointer;
+}
+
+/* article */
+article {
+    flex: 14 1 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* footer */
+footer {
+    flex: 1 1 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+}
+#github-mark {
+    width: 30px; height: 30px;
+}
+#repository-link {
+    line-height: 30px;
+    background: url('../img/out-link.png') no-repeat 95% 20%;
+    background-size: 15px;
+    width: 160px;
+}

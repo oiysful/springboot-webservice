@@ -1,5 +1,6 @@
 package com.ian.springboot.config.auth;
 
+import com.ian.springboot.domain.user.Role;
 import jakarta.servlet.DispatcherType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -24,8 +25,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(request -> request
                 .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
                 .requestMatchers("/", "/css/**", "/image/**", "/js/**", "/h2-console/**", "/profile").permitAll()
-//                .requestMatchers("/api/v1/**").hasRole(Role.USER.name())
-                    .requestMatchers("/api/v1/**").permitAll()
+                .requestMatchers("/api/v1/**").hasRole(Role.USER.name())
                 .anyRequest().authenticated())
             .logout()
                 .logoutSuccessUrl("/")

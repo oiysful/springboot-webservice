@@ -24,7 +24,7 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user) {
 
-        if(user != null) {
+        if (user != null) {
             model.addAttribute("userName", user.getName());
             return "redirect:/posts";
         }
@@ -48,8 +48,8 @@ public class IndexController {
 
     @GetMapping("/posts/save")
     public String postsSave(@LoginUser SessionUser user, Model model) {
-        model.addAttribute("userName", user.getName());
-        model.addAttribute("userEmail", user.getEmail());
+        usersResponseDto = usersService.findByEmail(user.getEmail());
+        model.addAttribute("user", usersResponseDto);
         return "posts/save";
     }
 

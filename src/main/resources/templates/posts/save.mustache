@@ -8,24 +8,6 @@
     <title>IAN Spring Boot Webservice</title>
 </head>
 <body>
-    <h1>게시글 등록</h1>
-
-    <div class="col-md-12">
-        <div class="col-md-4">
-            <form id="form-save">
-                <label for="title">제목</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요">
-                <label for="author"> 작성자 </label>
-                <input type="text" class="form-control" id="author" name="author" value="{{userName}}" readonly>
-                <input type="hidden" class="form-control" id="email" name="email" value="{{userEmail}}">
-                <label for="content"> 내용 </label>
-                <textarea class="form-control" id="content" name="content" placeholder="내용을 입력하세요"></textarea>
-            </form>
-            <a href="/posts" role="button" class="btn btn-secondary">취소</a>
-            <button type="submit" class="btn btn-primary" id="btn-save">등록</button>
-        </div>
-    </div>
-
     <main>
         <header>
             <span id="greeting">Welecome!</span>
@@ -33,14 +15,19 @@
             <a href="/logout" id="logout">Logout</a>
         </header>
         <article>
-            <div id="post-details">
-
+            <div id="post-save">
+                <form id="form-save">
+                    <label for="title">제목</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요">
+                    <label for="author"> 작성자 </label>
+                    <input type="text" class="form-control" id="author" name="author" value="{{user.name}}" readonly>
+                    <input type="hidden" class="form-control" id="email" name="email" value="{{user.email}}">
+                    <label for="content"> 내용 </label>
+                    <textarea class="form-control" id="content" name="content" placeholder="내용을 입력하세요"></textarea>
+                </form>
             </div>
-            <a href="/" role="button" class="post-details-btn">목록</a>
-            {{#author}}
-            <a href="/posts/update/{{post.id}}" class="post-details-btn">수정</button>
-            <button type="button" class="post-details-btn" id="btn-delete">삭제</button>
-            {{/author}}
+            <a href="/posts" role="button" class="btn btn-secondary">취소</a>
+            <button type="button" class="btn btn-primary" id="btn-save">등록</button>
         </article>
         <footer>
             <img src="/css/img/github-mark.png" alt="#">

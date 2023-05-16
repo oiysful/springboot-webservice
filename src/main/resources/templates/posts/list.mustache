@@ -5,42 +5,68 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/posts/list.css">
     <title>IAN Spring Boot Webservice</title>
 </head>
 <body>
-    <main>
+    <main class="main-section">
         <header>
-            <span id="greeting">Welecome!</span>
-            <a href="/user/{{user.id}}" id="user-info">{{user.name}}</a>
-            <a href="/logout" id="logout">Logout</a>
+            <img src="{{user.picture}}" alt="#" id="user-icon">
+            <div id="user-info-modal" class="hidden">
+                <span id="user-name">{{user.name}}</span>
+                <span id="user-email">{{user.email}}</span>
+                <a href="/user/{{user.id}}">마이페이지</a>
+                <a href="/logout">로그아웃</a>
+            </div>
         </header>
         <article>
+            <div id="find-items">
+                <select id="find-post-opt" class="option-items">
+                    <option value="제목">제목</option>
+                    <option value="작성자">작성자</option>
+                </select>
+                <input type="text" id="find-post-input" class="option-items" placeholder="검색어를 입력하세요">
+                <button type="button" id="find-post-btn" class="option-items find-post-btn">검색</button>
+                <a href="/posts/save" id="post-create-btn" class="option-items find-post-btn">작성</a>
+            </div>
             <table id="post-table">
                 <thead id="post-table-head">
                     <tr>
-                        <th>No</th>
-                        <th>Subject</th>
-                        <th>Author</th>
-                        <th>Modified At</th>
+                        <th id="table-no">No</th>
+                        <th id="table-subject">Subject</th>
+                        <th id="table-author">Author</th>
+                        <th id="table-mdf-at">Modified At</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{#posts}}
                     <tr>
-                        <td>{{id}}</td>
-                        <td><a href="/posts/{{id}}">{{title}}</a></td>
-                        <td>{{author}}</td>
-                        <td>{{modifiedDate}}</td>
+                        <td class="table-item-center">{{id}}</td>
+                        <td class="table-item-bold"><a href="/posts/{{id}}">{{title}}</a></td>
+                        <td class="table-item-center">{{author}}</td>
+                        <td class="table-item-center">{{modifiedDate}}</td>
                     </tr>
                     {{/posts}}
                 </tbody>
-                <a href="/posts/save">글 등록</a>
             </table>
+            <ul id="posts-paging">
+                <li id="posts-pre-page" class="page-arrow"></li>
+                <li id="page-num">
+                    <span>1</span>
+                    <span>2</span>
+                    <span>3</span>
+                    <span>4</span>
+                    <span>5</span>
+                </li>
+                <li id="posts-next-page" class="page-arrow"></li>
+            </ul>
         </article>
         <footer>
-            <img src="/css/img/github-mark.png" alt="#">
-            <a href="https://github.com/oiysful/springboot-webservice">Github Repository</a>
+            <img src="/css/img/github-mark.png" alt="#" id="github-mark">
+            <a href="https://github.com/oiysful/springboot-webservice" id="repository-link">Github Repository</a>
         </footer>
     </main>
+
+    <script src="/js/users/header.js"></script>
 </body>
 </html>
