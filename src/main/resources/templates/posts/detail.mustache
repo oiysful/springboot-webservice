@@ -5,34 +5,48 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/posts/detail.css">
     <title>IAN Spring Boot Webservice</title>
 </head>
 <body>
-    <main>
+    <main class="main-section">
         <header>
-            <span id="greeting">Welecome!</span>
-            <a href="/user/{{user.id}}" id="user-info">{{user.name}}</a>
-            <a href="/logout" id="logout">Logout</a>
+            <img src="{{user.picture}}" alt="#" id="user-icon">
+            <div id="user-info-modal" class="hidden">
+                <span id="user-name">{{user.name}}</span>
+                <span id="user-email">{{user.email}}</span>
+                <a href="/user/{{user.id}}">마이페이지</a>
+                <a href="/logout">로그아웃</a>
+            </div>
         </header>
         <article>
-            <div id="post-details">
-                {{post.title}}
-                {{post.author}}
-                {{post.content}}
-            </div>
-            <a href="/" role="button" class="post-details-btn">목록</a>
             {{#author}}
-            <a href="/posts/update/{{post.id}}" class="post-details-btn">수정</button>
-            <button type="button" class="post-details-btn" id="btn-delete">삭제</button>
+            <div id="post-mdf-btn">
+                <a href="/posts/update/{{post.id}}" class="post-details-btn post-detail-items">수정</a>
+                <button type="button" class="post-details-btn post-detail-items" id="btn-delete">삭제</button>
+            </div>
             {{/author}}
+            <div id="post-details">
+                <div id="detail-subject">
+                    <input type="hidden" name="id" id="id" value="{{post.id}}">
+                    <span id="post-title" class="post-detail-items">{{post.title}}</span>
+                    <span id="post-author" class="post-detail-items">
+                        {{post.author}}
+                        <span id="post-email">{{post.email}}</span>
+                    </span>
+                </div>
+                <pre id="post-content" class="post-detail-items">{{post.content}}</pre>
+            </div>
+            <a href="/" id="post-list-btn" class="post-details-btn post-detail-items">목록</a>
         </article>
         <footer>
-            <img src="/css/img/github-mark.png" alt="#">
-            <a href="https://github.com/oiysful/springboot-webservice">Github Repository</a>
+            <img src="/css/img/github-mark.png" alt="#" id="github-mark">
+            <a href="https://github.com/oiysful/springboot-webservice" id="repository-link">Github Repository</a>
         </footer>
     </main>
     
     <script src="/js/common/common.js"></script>
+    <script src="/js/users/header.js"></script>
     <script src="/js/posts/detail.js"></script>
 </body>
 </html>

@@ -1,11 +1,4 @@
 @import url("./common/common.css");
-#particle-canvas {
-    width: 100vw;
-    height: 100vh;
-    vertical-align: middle;
-    z-index: -1000;
-}
-
 .login-section {
     width: 500px;
     height: 500px;

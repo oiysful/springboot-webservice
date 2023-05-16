@@ -35,6 +35,7 @@ public class IndexController {
     public String user(@PathVariable Long id, Model model) {
         usersResponseDto = usersService.findById(id);
         model.addAttribute("user", usersResponseDto);
+        model.addAttribute("role-name", usersResponseDto.getRole().getTitle());
         return "users/detail";
     }
 
@@ -49,15 +50,18 @@ public class IndexController {
     @GetMapping("/posts/save")
     public String postsSave(@LoginUser SessionUser user, Model model) {
         usersResponseDto = usersService.findByEmail(user.getEmail());
+
         model.addAttribute("user", usersResponseDto);
+
         return "posts/save";
     }
 
     @GetMapping("/posts/{id}")
     public String postsDetail(@LoginUser SessionUser user, @PathVariable Long id, Model model) {
         usersResponseDto = usersService.findByEmail(user.getEmail());
-        model.addAttribute("user", usersResponseDto);
         postsResponseDto = postsService.findById(id);
+
+        model.addAttribute("user", usersResponseDto);
         model.addAttribute("author", user.getEmail().equals(postsResponseDto.getEmail()));
         model.addAttribute("post", postsResponseDto);
 
@@ -65,8 +69,11 @@ public class IndexController {
     }
 
     @GetMapping("/posts/update/{id}")
-    public String postsUpdate(@PathVariable Long id, Model model) {
+    public String postsUpdate(@LoginUser SessionUser user, @PathVariable Long id, Model model) {
+        usersResponseDto = usersService.findByEmail(user.getEmail());
         postsResponseDto = postsService.findById(id);
+
+        model.addAttribute("user", usersResponseDto);
         model.addAttribute("post", postsResponseDto);
 
         return "posts/update";

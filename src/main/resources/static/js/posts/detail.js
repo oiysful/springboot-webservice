@@ -1,4 +1,4 @@
-const postId = document.getElementById("id").innerText;
+const postId = document.getElementById("id").value;
 const deleteBtn = document.getElementById("btn-delete");
 
-deleteBtn.addEventListener("click", () => { fetchPosts("DELETE", {}, `/${postId}`); });
+deleteBtn.addEventListener("click", () => { fetchPosts("DELETE", null, `/${postId}`); });

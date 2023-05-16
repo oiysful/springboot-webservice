@@ -1,0 +1,46 @@
+@import url("../common/common.css");
+
+.main-section {
+    width: 500px;
+    height: 500px;
+}
+
+header {
+    padding: 20px;
+}
+
+article {
+    gap: 10px;
+}
+article span {
+    text-align: center;
+}
+
+#user-detail-close-btn {
+    all: unset;
+    background: url('../img/close.png') no-repeat;
+    background-position: center;
+    background-size: 25px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+#user-picture {
+    margin: 0 auto;
+    width: 200px;
+    border: 5px solid transparent;
+    border-radius: 50%;
+    background-image: -webkit-linear-gradient(0deg, rgba(1, 130, 122, .5) 0%, rgba(255, 205, 0, .5) 20%, rgba(255, 113, 12, .5) 40%, rgba(119, 124, 157, .5) 60%, rgba(29, 132, 254, .5) 80%, rgba(70, 205, 252, .5) 100%);
+    background-origin: border-box;
+    background-clip: border-box;
+}
+
+#user-name {
+    font-size: large;
+    font-weight: bold;
+}
+
+#user-email {
+    color: grey;
+}

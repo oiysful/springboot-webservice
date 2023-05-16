@@ -16,6 +16,13 @@ a {
     color: rgb(0, 0, 0);
 }
 
+#particle-canvas {
+    width: 100vw;
+    height: 100vh;
+    vertical-align: middle;
+    z-index: -1000;
+}
+
 .main-section {
     position: absolute;
     top: 50%;
@@ -36,7 +43,7 @@ header {
 }
 #user-icon {
     position: absolute;
-    width: 35px;
+    width: 60px;
     border-radius: 50%;
     box-shadow: 0 0 12px grey;
     cursor: pointer;
@@ -61,11 +68,11 @@ footer {
     gap: 10px;
 }
 #github-mark {
-    width: 30px; height: 30px;
+    width: 20px; height: 20px;
 }
 #repository-link {
-    line-height: 30px;
-    background: url('../img/out-link.png') no-repeat 95% 20%;
-    background-size: 15px;
-    width: 160px;
+    line-height: 20px;
+    background: url('../img/out-link.png') no-repeat 95% 10%;
+    background-size: 13px;
+    width: 165px;
 }

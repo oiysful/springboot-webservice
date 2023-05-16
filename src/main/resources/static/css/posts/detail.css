@@ -1,0 +1,70 @@
+@import url("../common/common.css");
+@import url("../users/header.css");
+
+.main-section {
+    width: 90vw;
+    height: 90vh;
+}
+article {
+    gap: 0;
+    padding: 0 40px;
+}
+#post-mdf-btn {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    cursor: pointer;
+}
+.post-details-btn {
+    all: unset;
+    display: inline-block;
+    width: 60px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+}
+.post-detail-items {
+    border-bottom: 1px solid black;
+    margin: 0 8px;
+}
+#post-details {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 20px 0;
+}
+#detail-subject {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 20px;
+}
+#post-title {
+    flex: 5 1 0;
+    height: 40px;
+    text-align: left;
+    line-height: 40px;
+    padding: 0 20px;
+    font-weight: bold;
+    font-size: large;
+}
+#post-author {
+    flex: 1 1 0;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+}
+#post-email {
+    font-size: small;
+    color: grey;
+}
+#post-content {
+    padding: 40px;
+    height: 45vh;
+    overflow-y: auto;
+    cursor: text;
+}
+#post-list-btn {
+    margin: 0 auto;
+}
