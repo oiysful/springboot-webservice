@@ -22,7 +22,7 @@
         <article>
             <form id="form-save">
                 <label for="title">제목</label>
-                <input type="text" class="form-control form-subject" id="title" name="title" placeholder="제목을 입력하세요">
+                <input type="text" class="form-control form-subject" id="title" name="title" placeholder="제목을 입력하세요" autofocus>
                 <label for="author-group"> 작성자 </label>
                 <div id="author-group" class="form-control" name="author-group">
                     <input type="text" class="form-control form-subject" id="author" name="author" value="{{user.name}}" tabindex="-1" readonly>
@@ -33,7 +33,7 @@
             </form>
             <div id="save-btns">
                 <button type="button" class="form-control save-btn" id="btn-save">등록</button>
-                <a href="/posts" role="button" class="form-control save-btn">취소</a>
+                <button class="form-control save-btn" onclick="history.back()">취소</button>
             </div>
         </article>
         <footer>

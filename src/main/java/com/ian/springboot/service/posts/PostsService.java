@@ -2,17 +2,14 @@ package com.ian.springboot.service.posts;
 
 import com.ian.springboot.domain.posts.Posts;
 import com.ian.springboot.domain.posts.PostsRepository;
-import com.ian.springboot.web.dto.PostsListResponseDto;
 import com.ian.springboot.web.dto.PostsResponseDto;
 import com.ian.springboot.web.dto.PostsSaveRequestDto;
 import com.ian.springboot.web.dto.PostsUpdateRequestDto;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
@@ -41,11 +38,20 @@ public class PostsService {
         return new PostsResponseDto(entity);
     }
 
-    @Transactional
-    public List<PostsListResponseDto> findAllDesc() {
-        return postsRepository.findAll(Sort.by(Sort.Direction.DESC, "id")).stream()
-                .map(PostsListResponseDto::new)
-                .collect(Collectors.toList());
+    @Transactional(readOnly = true)
+    public Page<Posts> findAllByPage(Pageable pageable) {
+
+        return postsRepository.findAll(pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Posts> search(Pageable pageable, String select, String keyword) {
+
+        return switch (select) {
+            case "title" -> postsRepository.findByTitleContainingIgnoreCase(keyword, pageable);
+            case "author" -> postsRepository.findByAuthorContainingIgnoreCase(keyword, pageable);
+            default -> postsRepository.findByContentContainingIgnoreCase(keyword, pageable);
+        };
     }
 
     @Transactional
@@ -54,4 +60,5 @@ public class PostsService {
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
         postsRepository.delete(posts);
     }
+
 }

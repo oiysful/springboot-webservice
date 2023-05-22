@@ -2,11 +2,18 @@ package com.ian.springboot.web;
 
 import com.ian.springboot.config.auth.LoginUser;
 import com.ian.springboot.config.auth.dto.SessionUser;
+import com.ian.springboot.domain.posts.Posts;
 import com.ian.springboot.service.posts.PostsService;
 import com.ian.springboot.service.users.UsersService;
+import com.ian.springboot.web.dto.PostsPageResponseDto;
 import com.ian.springboot.web.dto.PostsResponseDto;
 import com.ian.springboot.web.dto.UsersResponseDto;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,12 +47,34 @@ public class IndexController {
     }
 
     @GetMapping("/posts")
-    public String posts(@LoginUser SessionUser user, Model model) {
+    public String posts(@LoginUser SessionUser user,
+                        @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
+                        Model model) {
         usersResponseDto = usersService.findByEmail(user.getEmail());
+        PostsPageResponseDto postsPageResponseDto = new PostsPageResponseDto(postsService.findAllByPage(pageable));
+
         model.addAttribute("user", usersResponseDto);
-        model.addAttribute("posts", postsService.findAllDesc());
+        model.addAttribute("postsPage", postsPageResponseDto);
+
         return "posts/list";
     }
+
+    @GetMapping("/posts/search")
+    public String searchPosts(@LoginUser SessionUser user,
+                              @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
+                              HttpServletRequest request,
+                              Model model) {
+        Page<Posts> searchResults = postsService.search(pageable, request.getParameter("select"), request.getParameter("keyword"));
+
+        usersResponseDto = usersService.findByEmail(user.getEmail());
+        PostsPageResponseDto postsPageResponseDto = new PostsPageResponseDto(searchResults);
+
+        model.addAttribute("user", usersResponseDto);
+        model.addAttribute("postsPage", postsPageResponseDto);
+
+        return "posts/list";
+    }
+
 
     @GetMapping("/posts/save")
     public String postsSave(@LoginUser SessionUser user, Model model) {

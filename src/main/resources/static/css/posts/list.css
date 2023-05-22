@@ -1,5 +1,6 @@
 @import url("../common/common.css");
 @import url("../users/header.css");
+
 .main-section {
     width: 90vw;
     height: 90vh;
@@ -13,6 +14,7 @@
     flex-direction: row;
     gap: 12px;
 }
+
 .option-items {
     all: unset;
     background-color: transparent;
@@ -21,14 +23,17 @@
     border-bottom: 1px solid black;
     padding: 0 8px;
 }
+
 #find-post-opt {
     width: 65px;
     background: url('../img/under-arrow.png') no-repeat 95% 50%;
     background-size: 10px;
 }
+
 #find-post-input {
     width: 200px;
 }
+
 .find-post-btn {
     width: 40px;
     cursor: pointer;
@@ -43,7 +48,8 @@
     border-collapse: collapse;
 }
 
-#post-table th, td {
+#post-table th,
+td {
     border-bottom: 1px solid #444444;
     padding: 12px 28px;
 }
@@ -51,12 +57,15 @@
 #table-no {
     width: 10%;
 }
+
 #table-subject {
     width: 50%;
 }
+
 #table-author {
     width: 15%;
 }
+
 #table-mdf-at {
     width: 15%;
 }
@@ -68,6 +77,7 @@
 .table-item-bold {
     font-weight: bold;
 }
+
 .table-item-bold a {
     display: block;
     width: 100%;
@@ -80,24 +90,34 @@
     margin: 0 auto;
     padding: 0;
 }
+
 #posts-paging li {
     float: left;
-    padding: 10px;
-    cursor: pointer;
+    margin: 0 10px;
     height: 40px;
     line-height: 40px;
 }
+
 #page-num span {
     padding: 0 10px;
 }
+
 .page-arrow {
     background-repeat: no-repeat;
     background-size: 15px;
     background-position: center;
 }
+
+.page-arrow a {
+    display: block;
+    width: 20px;
+    height: 40px;
+}
+
 #posts-pre-page {
     background-image: url('../img/left-arrow.png');
 }
+
 #posts-next-page {
     background-image: url('../img/right-arrow.png');
 }

@@ -1,13 +1,15 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/posts/list.css">
     <title>IAN Spring Boot Webservice</title>
 </head>
+
 <body>
     <main class="main-section">
         <header>
@@ -21,12 +23,16 @@
         </header>
         <article>
             <div id="find-items">
-                <select id="find-post-opt" class="option-items">
-                    <option value="제목">제목</option>
-                    <option value="작성자">작성자</option>
-                </select>
-                <input type="text" id="find-post-input" class="option-items" placeholder="검색어를 입력하세요">
-                <button type="button" id="find-post-btn" class="option-items find-post-btn">검색</button>
+                <form action="/posts/search">
+                    <select id="find-post-opt" class="option-items" name="select">
+                        <option value="title">제목</option>
+                        <option value="author">작성자</option>
+                        <option value="content">내용</option>
+                    </select>
+                    <input type="text" name="keyword" id="find-post-input" class="option-items"
+                        placeholder="검색어를 입력하세요">
+                    <input type="submit" id="find-post-btn" class="option-items find-post-btn" value="검색">
+                </form>
                 <a href="/posts/save" id="post-create-btn" class="option-items find-post-btn">작성</a>
             </div>
             <table id="post-table">
@@ -39,26 +45,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{#posts}}
+                    {{#postsPage.list}}
                     <tr>
                         <td class="table-item-center">{{id}}</td>
                         <td class="table-item-bold"><a href="/posts/{{id}}">{{title}}</a></td>
                         <td class="table-item-center">{{author}}</td>
                         <td class="table-item-center">{{modifiedDate}}</td>
                     </tr>
-                    {{/posts}}
+                    {{/postsPage.list}}
                 </tbody>
             </table>
             <ul id="posts-paging">
-                <li id="posts-pre-page" class="page-arrow"></li>
-                <li id="page-num">
-                    <span>1</span>
-                    <span>2</span>
-                    <span>3</span>
-                    <span>4</span>
-                    <span>5</span>
+                <li id="posts-pre-page" class="page-arrow"
+                    {{^postsPage.hasPrevPage}}style="background-image: none; width: 20px;" {{/postsPage.hasPrevPage}}>
+                    {{#postsPage.hasPrevPage}}
+                    <a href="?page={{postsPage.prevPage}}" role="button"></a>
+                    {{/postsPage.hasPrevPage}}
                 </li>
-                <li id="posts-next-page" class="page-arrow"></li>
+                <li id="page-num">
+                    <span><b>{{postsPage.currentPage}}</b> / {{postsPage.totalPage}}</span>
+                </li>
+                <li id="posts-next-page" class="page-arrow"
+                    {{^postsPage.hasNextPage}}style="background-image: none; width: 20px;" {{/postsPage.hasNextPage}}>
+                    {{#postsPage.hasNextPage}}
+                    <a href="?page={{postsPage.nextPage}}" role="button"></a>
+                    {{/postsPage.hasNextPage}}
+                </li>
             </ul>
         </article>
         <footer>
@@ -67,6 +79,8 @@
         </footer>
     </main>
 
+    <script src="/js/common/common.js"></script>
     <script src="/js/users/header.js"></script>
 </body>
+
 </html>
